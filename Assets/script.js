@@ -1,20 +1,15 @@
-var choicePool = [];
-var password = [];
 // Array of letters, numbers, and symbols
-var alphaLower = 'abcdefghijklmnopqrstuvwxyz';
-alphaLower = alphaLower.split('');
-var number = '123456789';
-number = number.split('');
-var special = "!@#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-special = special.split('');
-var upperCase = function (letters) {
-    return letters.toUpperCase();
-};
-var alphaUpper = alphaLower.map(upperCase);
+var generateBtn = document.querySelector("#generate");
+var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "U", "V", "W", "x", "y", "z"];
+var num = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var characters = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", "_", "~", "|"];
+var solutionSet = []
+var password = []
 
 // * Function to generate random password based off user input
 function generatePassword() {
-    choicePool = [];
+    solutionSet = [];
     password = [];
 
     var userInput = prompt("How many characters would you like your password to contain?");
@@ -37,30 +32,31 @@ function generatePassword() {
         generatePassword();
     } 
     if (confirmLowercase) {
-        choicePool = choicePool.concat(alphaLower);
+        solutionSet = solutionSet.concat(alphaLower);
     }
     if (confirmUppercase) {
-        choicePool = choicePool.concat(alphaUpper);
+        solutionSet = solutionSet.concat(alphaUpper);
     }
     if (confirmNumbers) {
-        choicePool = choicePool.concat(number);
+        solutionSet = solutionSet.concat(number);
     }
     if (confirmSpecial) {
-        choicePool = choicePool.concat(special)
+        solutionSet = solutionSet.concat(special)
     }
     for (var i = 0; i < userInput; i++) { 
-        var randomIndex = Math.floor(Math.random() * choicePool.length);
-        var indexValue = choicePool[randomIndex];
+        var randomIndex = Math.floor(Math.random() * solutionSet.length);
+        var indexValue = solutionSet[randomIndex];
         password.push(indexValue);
     }
     return password.join("");
 }
 //* Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-}
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  }
+
 //* Add event listener to generate button
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
