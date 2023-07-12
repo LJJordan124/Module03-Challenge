@@ -10,4 +10,4 @@
 
 ## Deployed Application
 
-https://ljjordan124.github.io/Password-Generator/Develop/index.html
+https://ljjordan124.github.io/Password-Generator/
